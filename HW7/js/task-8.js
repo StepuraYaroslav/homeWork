@@ -24,23 +24,14 @@ const createBoxes = (amount) => {
     return(boxes);
 };
 
-let wrapperForBoxes = document.createElement('div');
-
-const addBox = () => {
-    wrapperForBoxes.append(...createBoxes(inputCountRef.value));
-    boxesRef.append(wrapperForBoxes);
-    console.log(wrapperForBoxes);
-
-};
-const removeBox = () => {
-    wrapperForBoxes.remove();
-    
-    console.log(wrapperForBoxes);
-
+const addBoxes = () => boxesRef.append(...createBoxes(inputCountRef.value));
+const removeBoxes = () => {
+    const boxesForDelete = boxesRef.querySelectorAll('div');
+    boxesForDelete.forEach(box => box.remove());
 };
 
-createButtonRef.addEventListener('click', addBox);
-removeButtonRef.addEventListener('click', removeBox);
+createButtonRef.addEventListener('click', addBoxes);
+removeButtonRef.addEventListener('click', removeBoxes);
 
 
 
