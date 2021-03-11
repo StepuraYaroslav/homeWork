@@ -8,10 +8,20 @@ const randomRGBA = () => {
     return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
 };
 
+const getBoxesCount = () => boxesRef.querySelectorAll('div');
+
 const createBoxes = (amount) => {
     let boxes = [];
+    let i = 1;
+    
+    const boxesCount = getBoxesCount();
 
-    for (let i = 1; i <= Number(amount); i += 1) {
+    if (boxesCount !== []) {
+        amount = Number(amount) + boxesCount.length;
+        i += boxesCount.length;
+    }
+
+    for (i; i <= amount; i += 1) {
         const box = document.createElement('div');
 
         box.style.backgroundColor = `${randomRGBA()}`;
@@ -26,8 +36,8 @@ const createBoxes = (amount) => {
 
 const addBoxes = () => boxesRef.append(...createBoxes(inputCountRef.value));
 const removeBoxes = () => {
-    const boxesForDelete = boxesRef.querySelectorAll('div');
-    boxesForDelete.forEach(box => box.remove());
+    const boxesCount = getBoxesCount();
+    boxesCount.forEach(box => box.remove());
 };
 
 createButtonRef.addEventListener('click', addBoxes);
