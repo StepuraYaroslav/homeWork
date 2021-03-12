@@ -4,7 +4,9 @@ const removeButtonRef = document.querySelector('button[data-action="destroy"]');
 const boxesRef = document.querySelector('#boxes');
 
 const randomRGBA = () => {
-    var o = Math.round, r = Math.random, s = 255;
+    const o = Math.round;
+    const r = Math.random;
+    const s = 255;
     return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
 };
 
@@ -16,7 +18,7 @@ const createBoxes = (amount) => {
     
     const boxesCount = getBoxesCount();
 
-    if (boxesCount !== []) {
+    if (boxesCount.length) {
         amount = Number(amount) + boxesCount.length;
         i += boxesCount.length;
     }
